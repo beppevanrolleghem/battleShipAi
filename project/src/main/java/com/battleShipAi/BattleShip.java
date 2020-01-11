@@ -1,7 +1,7 @@
 package com.battleShipAi;
 
 
-import jdk.internal.net.http.common.Pair;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class BattleShip {
     int[][] field;
@@ -33,11 +33,11 @@ public class BattleShip {
         for (int xi = 0; xi < width; xi++) {
             for (int yi = 0; yi < height; yi++) {
                 if (returnVal == null) {
-                    returnVal = new Pair<Integer, Integer>(xi, yi);
+                    returnVal = Pair.of(xi, yi);//new Pair<Integer, Integer>(xi, yi);
                     bestScore = scoredField[xi][yi];
                 } else {
                     if (bestScore < scoredField[xi][yi]) {
-                        returnVal = new Pair<Integer, Integer>(xi, yi);
+                        returnVal = Pair.of(xi,yi);//new Pair<Integer, Integer>(xi, yi);
                         bestScore = scoredField[xi][yi];
                     }
                 }
