@@ -30,7 +30,7 @@ public class Game {
             while(true) {
                 System.out.println("\nDo you want to set the ship vertical or horizontal? (v/h)");
                 String type = in.next();
-                if (placeShip(in, ships[i], type.equals("v"))){
+                if (placeShip(in, ships[i], type.equals("h"))){
                     break;
                 } else {
                     continue;
@@ -48,20 +48,20 @@ public class Game {
 
 
     private static boolean placeShip(Scanner in, int ship, boolean vert) {
-        System.out.println("Enter the column position of the top of the ship");
-        int col = in.nextInt();
-        System.out.println("Enter the row position of the top of the ship");
-        int row = in.nextInt();
-        int turn = (vert) ? row : col;
+        System.out.println("Enter the column position of the top-left of the ship");
+        int col = in.nextInt()-1;
+        System.out.println("Enter the row position of the top-left of the ship");
+        int row = in.nextInt()-1;
+        int turn = (vert) ? col : row;
 
         boolean success = (vert && ship + row < height) || (!vert && ship + col < width);
         for (int ij = turn; ij < turn+ship; ij++) {
             if (!vert) {
-                success = !(field[ij][row].equals("S"));
-                field[ij][row] = "S";
+                success = !(field[ij][col].equals("S"));
+                field[ij][col] = "S";
             } else {
-                success = !(field[col][ij].equals("S"));
-                field[col][ij] = "S";
+                success = !(field[row][ij].equals("S"));
+                field[row][ij] = "S";
             }
         }
         if (success) {
